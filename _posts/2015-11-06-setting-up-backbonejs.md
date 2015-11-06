@@ -5,8 +5,6 @@ date:   2015-11-06 11:23:18 -0700
 categories: backbone js tutorial
 ---
 
-# Setting up backbonejs
-
 I was surprised to not find an easy, _setting up backbone with npm_. The popular tutorials seem to take some shortcuts to get you in the code quickly. I really wanted to know how to get set _fo' reals_. after all, I want to start working with backbone not because I think it will be good for me, but because **I want to make something.**
 
 # Getting npm
