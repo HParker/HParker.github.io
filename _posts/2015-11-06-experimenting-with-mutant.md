@@ -6,10 +6,6 @@ categories: ruby experiment testing rspec
 ---
 
 
-what is Mutant?
-----------------
-
-
 I noticed a couple of interesting things when I experimented with [Mutant](https://github.com/mbj/mutant). If you are unfamiliar with Mutant, basically it parses your ruby code into an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) and does modifications to your code to see if your code breaks. The idea is that with tools like [SimpleCov](https://github.com/colszowka/simplecov), you can see what lines your tests run, but it does not show that you are actually testing the behavior correctly. Mutant modifies your programs AST to create valid ruby that is likely to not be covered by your tests.
 
 
