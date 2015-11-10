@@ -2,7 +2,7 @@
 layout: post
 title: Caching methods with Ruby 2.1's method definition return value
 date: 2015-11-06 16:26:43 -0700
-categories: ruby
+categories: ruby performance metaprogramming
 ---
 
 > You can see the final product of this article [here](https://github.com/HParker/ruby_memoize_method)
