@@ -6,14 +6,27 @@ categories: ruby experiment testing rspec
 ---
 
 
-I noticed a couple of interesting things when I experimented with [Mutant](https://github.com/mbj/mutant). If you are unfamiliar with Mutant, basically it parses your ruby code into an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) and does modifications to your code to see if your code breaks. The idea is that with tools like [SimpleCov](https://github.com/colszowka/simplecov), you can see what lines your tests run, but it does not show that you are actually testing the behavior correctly. Mutant modifies your programs AST to create valid ruby that is likely to not be covered by your tests.
+I  noticed a  couple of  interesting things  when I  experimented with
+[Mutant](https://github.com/mbj/mutant).  If  you are  unfamiliar with
+Mutant,    basically   it    parses   your    ruby   code    into   an
+[AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) and performs
+modifications to  your code to  see if your  code breaks. The  idea is
+that                  with                 tools                  like
+[SimpleCov](https://github.com/colszowka/simplecov), you  can see what
+lines  your tests  run, but  it does  not show  that you  are actually
+testing the behavior  correctly. Mutant modifies your  programs AST to
+create valid ruby that _should_ break your tests.
 
 
 The project
 ===============
 
 
-I am going to be using a little movie management app as my test app. You can find [caketop](https://github.com/XanderStrike/caketop-theater) and look at the code if you like, but really I only expect you to understand what a movie to understand what I learned using mutant.
+I  am going  to be  using a  little movie  management app  as my  test
+app.                   You                  can                   find
+[caketop](https://github.com/XanderStrike/caketop-theater) and look at
+the code if you like, but really  I only expect you to understand what
+a movie is.
 
 
 Discoveries
@@ -40,7 +53,10 @@ end
 ### Solution
 
 
-This kind of test has a very simple solution. just expect something. In this case I went with a regular expression. This should be more robust than trying to match the whole page content which is factory generated and could change.
+This  kind   of  test  has   a  very  simple  solution.   Just  expect
+something. In this case I went  with a regular expression. This should
+be more  robust than trying to  match the whole page  content which is
+factory generated and could change.
 
 {% highlight diff %}
  it 'should parse text with markdown and put it in contents on save' do
@@ -48,36 +64,45 @@ This kind of test has a very simple solution. just expect something. In this cas
 -  expect(page.content).to_not eq(nil)
 +  expect(page.content).to match(/This\ is\ a\ test\ page!/)
  end
-
 {% endhighlight %}
 
-I noticed some changes that I was making in my code while looking through the things that broke with Mutant. I was expecting to be making changes in my tests, but in reality I ended up making at least equal amounts of changes in my code. and I think the code is better for it.
 
 Missing special cases
 -----------------
 
+Interestingly, not all of the changes I  made were in my tests!  I was
+expecting only making  changes in my tests, but in  reality I ended up
+making at least equal amounts of changes  in my code.  And I think the
+code is better  for it. I don't know if the creator of mutant intended
+for the tool to expose poor code as well as poor coverage. Either  way
+I found mutant to be a helpful tool for code introspection as well.
+
 ### Found
 
 
-I feel like this is totally the intention of Mutant. one of my favorite finds was a very non-dry method that was missing a test. So Mutant threw up on this in a big was.
+One  of my  favorite finds  was a  non-dry method  that was  missing a
+test. So Mutant threw up on this in a big way.
 
 The method was,
 
 {% highlight ruby %}
 def self.update(params)
--    s = Setting.get(params[:setting])
--    s.update_attribute(:content, params[:content])
--    s.update_attribute(:boolean, (params[:boolean] == 'true'))
--    Setting.get('admin-pass').update_attributes(content: Digest::SHA256.hexdigest(params[:admin_pass])) if params[:setting] == 'admin'
+  s = Setting.get(params[:setting])
+  s.update_attribute(:content, params[:content])
+  s.update_attribute(:boolean, (params[:boolean] == 'true'))
+  Setting.get('admin-pass').update_attributes(content: Digest::SHA256.hexdigest(params[:admin_pass])) if params[:setting] == 'admin'
 end
 {% endhighlight %}
 
-In addition to not fully really understanding ruby's `self` it also has this special case for setting the admin password. This case where the
+In addition  to not fully  really understanding ruby's `self`  it also
+has this special  case for setting the admin password  that breaks the
+typical pattern above.
 
 ### Solution
 
 
-so First thing I did was extract the special behavior around admin_pass and the unnecissary references to `Setting`
+so  First  thing  I  did  was  extract  the  special  behavior  around
+admin-pass and the unnecissary references to `Setting`
 
 {% highlight diff %}
 +    def update(params)
@@ -104,13 +129,12 @@ end
 Then I added the missing test case,
 
 {% highlight ruby %}
-  describe 'admin' do
-it 'will sha the admin_pass' do
-  setting = create(:setting, name: 'testsetting', boolean: false)
-  Setting.update(setting: 'admin_pass', content: 'mypwd')
-  expect(Setting.get('testsetting').content).to_not be nil
+describe 'admin' do
+  it 'will sha the admin_pass' do
+    Setting.update(setting: 'admin', admin_pass: 'mypwd')
+    expect(Setting.get('admin-pass').content).to eq Digest::SHA256.hexdigest('mypwd')
+  end
 end
-
 {% endhighlight %}
 
 
@@ -121,7 +145,8 @@ Constants over static methods
 
 ### Found
 
-First thing I ran into was a a fun little method for on the model that listed the different sort orders you could use when sorting movies.
+First thing I ran into was a a fun little method for on the model that
+listed the different sort orders you could use when sorting movies.
 
 {% highlight ruby %}
 class Movie < ActiveRecord::Base
@@ -146,7 +171,11 @@ def self.sort_orders
 end
 {% endhighlight %}
 
-Clearly, first thing I thought was, "wow this method should be a constant." the tests that Mutant ran on this file inserted `nil` or `self` throughout the this array of arrays. I realize that I didn't care about testing that because this array will likely always be exactly like this as long as those are the fields on a Movie you can sort.
+The first thing I thought was, "wow this method should be a constant."
+The  tests that  Mutant  ran on  this file  inserted  `nil` or  `self`
+throughout the  this array  of arrays.  I realize  that I  didn't care
+about testing that because this array will always be exactly like this
+as long as those are the fields on a Movie you can sort.
 
 ### Solution
 
@@ -190,7 +219,19 @@ Clearly, first thing I thought was, "wow this method should be a constant." the 
 -      ['Added (desc)', 'added desc']
 -    ]
 -  end
--
 {% endhighlight %}
 
-When I realized that there really isn't a practical way to change this array without changing the code, I moved the method into a constant. Next step would normally be to add the method back and just reference the constant to maintain the interface, but I found only one use of this method, so I just referenced it directly there.
+When I realized that there really isn't a practical way to change this
+array without  changing the  purpose too.  I moved  the method  into a
+constant. Next step would normally be  to add the method back and just
+reference the constant to maintain the interface, but I found only one
+use of this method, so I just referenced it directly there.
+
+Conclusion
+-----------
+
+The best  thing I  have found  about using mutant  is that  I actually
+learned some new patterns to watch for  in my future code. I am sure I
+could find more patterns if I test more things with mutant, but I have
+already found some small improvements I will be looking for in my code
+and tests in the future.
