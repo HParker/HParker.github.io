@@ -53,4 +53,4 @@ Sandi Metz is a demigod around the office.
 
 - [Migratiq](https://github.com/HParker/migratiq) migrate unexpected sidekiq args
 
-- [Memoize Method](https://github.com/HParker/ruby_memoize_method) 4 character method memoization in ruby
+- [Memoize Method](https://github.com/HParker/ruby_memoize_method) 5 character method memoization in ruby
