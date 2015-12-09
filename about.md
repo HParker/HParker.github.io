@@ -13,10 +13,11 @@ much coffee and enjoy Pho.
 ## Reading:
 
 * [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
-* [Learn you a haskell](http://learnyouahaskell.com/)
+* [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms)
 
 ## Next to read:
 
+* [Learn you a haskell](http://learnyouahaskell.com/)
 * [Zen and the Art of Motorcycle Maintenance](https://en.wikipedia.org/wiki/Zen_and_the_Art_of_Motorcycle_Maintenance)
 * [Ruby Under a Microscope](http://patshaughnessy.net/ruby-under-a-microscope)
 * [The Fountainhead](https://en.wikipedia.org/wiki/The_Fountainhead)
