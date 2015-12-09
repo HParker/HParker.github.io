@@ -13,7 +13,6 @@ much coffee and enjoy Pho.
 ## Reading:
 
 * [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
-* [Exceptional Ruby](http://exceptionalruby.com/)
 * [Learn you a haskell](http://learnyouahaskell.com/)
 
 ## Next to read:
@@ -25,11 +24,17 @@ much coffee and enjoy Pho.
 
 ## Recently Read:
 
-* [The Little Go Book](http://openmymind.net/The-Little-Go-Book/)
+* [Exceptional Ruby](http://exceptionalruby.com/) Short and had a
+couple nuggets of knowledge. The points of reflection where a bit
+weak, but the quotes and cited books where good and I am excited to
+read them.  FYI: if you use iBooks, the epub will not render
+correctly, so I wasn't able to make notes. Also, you'll have to read
+past the typos.
 
-I Highly recommend this book if you are at all interested in go. The
+
+* [The Little Go Book](http://openmymind.net/The-Little-Go-Book/)I
+Highly recommend this book if you are at all interested in go. The
 author is super awesome and open to feedback.
 
-* [POODR](http://www.poodr.com/)
-
-Sandi Metz is a demigod around the office.
+* [POODR](http://www.poodr.com/) Sandi Metz is a demigod around the
+  office.
