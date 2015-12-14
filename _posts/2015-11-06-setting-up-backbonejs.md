@@ -5,20 +5,33 @@ date:   2015-11-06 11:23:18 -0700
 categories: backbone js tutorial
 ---
 
-I was surprised to not find an easy, _setting up backbone with npm_. The popular tutorials seem to take some shortcuts to get you in the code quickly. I really wanted to know how to get set _fo' reals_. after all, I want to start working with backbone not because I think it will be good for me, but because **I want to make something.**
+I  was surprised  to  not  find an  easy,  _setting  up backbone  with
+npm_. The popular tutorials seem to  take some shortcuts to get you in
+the  code  quickly. I  really  wanted  to know  how  to  get set  _fo'
+reals_. after all, I want to start working with backbone not because I
+think  it  will  be  good  for  me,  but  because  **I  want  to  make
+something.**
 
 # Getting npm
 
-I am not an authority on setting up npm, but there are [good instruction here](https://nodejs.org/download/) and npm is available via [Homebrew](http://brew.sh/) which, for a mac user, is by far the easiest.
+I  am   not  an   authority  on   setting  up   npm,  but   there  are
+[good  instruction  here](https://nodejs.org/download/)   and  npm  is
+available via [Homebrew](http://brew.sh/) which, for a mac user, is by
+far the easiest.
 
 # Setting up package.json
 
-npm will use a JSON file called `package.json` to express dependencies and provide information about the file. for Ruby programmers `package.json` is the equivalent of a `Gemfile`.
+npm will use a JSON file called `package.json` to express dependencies
+and   provide   information   about   the   file.   Ruby   programmers
+`package.json` is the equivalent  of a `Gemfile`. Clojure's equivalent
+is `project.clj`.
 
 ## Getting the basics
 
-easiest way to get started is to use the `npm init` command to get the very basics into the `package.json` file.
-`npm init` will walk you through the steps to setup your app, after that you have a basic project.json that looks something like,
+easiest way to get started is to use the `npm init` command to get the
+very basics  into the `package.json`  file.  `npm init` will  walk you
+through  the steps  to setup  your app,  after that  you have  a basic
+project.json that looks something like,
 
 `package.json`
 
@@ -41,9 +54,13 @@ easiest way to get started is to use the `npm init` command to get the very basi
 
 ## Adding dependencies
 
-So now we have the basic npm package setup, now we need to express our dependencies. The conventions are important and specific. npm is going to look for the `dependencies` key at the top level. after that the format is `"<package>": "<version>"`
+So now we have the basic npm package setup, now we need to express our
+dependencies. The conventions are important and specific. npm is going
+to look  for the `dependencies` key  at the top level.  after that the
+format is `"<package>": "<version>"`
 
-So the simplest thing that works for a simple backbone project just adds underscore, jquery and backbone.
+So the  simplest thing that works  for a simple backbone  project just
+adds underscore, jquery and backbone.
 
 `package.json`
 
@@ -59,16 +76,24 @@ So the simplest thing that works for a simple backbone project just adds undersc
 }
 {% endhighlight %}
 
-Additionally, npm can do the work for you. if you want something in your package json just type `npm install jsdom --save` into your console and npm will add it for you and install the dependency
+Additionally, npm  can do the work  for you. if you  want something in
+your  package json  just type  `npm  install jsdom  --save` into  your
+console and npm will add it for you and install the dependency
 
 
 # Where is the structure?
 
-Backbone does not decide a structure for you. Backbone only really cares that you use a REST interface and have underscore.js. So the rest is up to you. This is a great chance to shoot yourself in the foot, but also part of what makes backbone great.
+Backbone does  not decide  a structure for  you. Backbone  only really
+cares that  you use a  REST interface  and underscore.js.  So the
+rest is  up to you. This  is a great  chance to shoot yourself  in the
+foot, but also part of what makes backbone great.
 
 ## some sane defaults
 
-I think that it makes sense to have dir for each of the _what is a_ sections on the [cdnjs docs](https://cdnjs.com/libraries/backbone.js). So the simple template I would start with is something like:
+I think that  it makes sense to have  dir for each of the  _what is a_
+sections                             on                            the
+[cdnjs  docs](https://cdnjs.com/libraries/backbone.js). So  the simple
+template I would start with is something like:
 
 `Tree`
 
@@ -84,11 +109,13 @@ src
 └── views
 {% endhighlight %}
 
-This way each folder is responsible for a particular type of file you are going to need in your backbone app
+This way each folder is responsible  for a particular type of file you
+are going to need in your backbone app.
 
 # Grunt for minifying and running tests
 
-Now when I started with Backbone I wasted far too much time on my grunt file. What I ended up with was not that complicated.
+Now when I started with Backbone I wasted far too much time on my grunt file.
+What I ended up with was not that complicated.
 
 First things first, we have our little magic incantation at the top of the file,
 
@@ -162,7 +189,8 @@ Then setup jshint and testing,
     },
 {% endhighlight %}
 
-For extra credit we can setup jshit to watch our files and do whatever we would like when they change,
+For extra credit we can setup jshit to watch our files and do whatever
+we would like when they change, for example, run the tests.
 
 {% highlight javascript %}
     watch: {
@@ -174,4 +202,8 @@ For extra credit we can setup jshit to watch our files and do whatever we would 
 
 # conclusion
 
-Now the rest is up to you. This is what I needed to do to get javascript tested and compiled into a single file I could include in another app. So hopefully you can spend less time bouncing around the internet trying to set this up and get straight to the good part and write something interesting.
+Now  the rest  is up  to  you. This  is what  I  needed to  do to  get
+javascript tested and  compiled into a single file I  could send along
+to the client.   So hopefully you can spend less  time bouncing around
+the internet trying to  set this up and get straight  to the good part
+and write something interesting.
