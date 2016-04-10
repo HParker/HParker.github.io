@@ -18,6 +18,8 @@ permalink: /projects/
 
 - [Dirty Cop](https://github.com/melch/dirtycop) A rubocop plugin that only checks syntax on modified lines in your working directory
 
+- [aasm](https://github.com/aasm/aasm) Some interesting code to provide a state machine that works well with Rails. I am not sure I would suggest it for new projects, but I do have some code in there.
+
 ## Gems
 
 - [Sock Drawer](https://github.com/HParker/sock-drawer) Web Socket manager with redis

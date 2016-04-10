@@ -13,9 +13,10 @@ much coffee and enjoy Pho.
 ## Reading:
 
 * [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
-* [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms)
+* [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer)
 
 ## Next to read:
+
 
 * [Learn you a haskell](http://learnyouahaskell.com/)
 * [Zen and the Art of Motorcycle Maintenance](https://en.wikipedia.org/wiki/Zen_and_the_Art_of_Motorcycle_Maintenance)
@@ -33,7 +34,7 @@ correctly, so I wasn't able to make notes. Also, you'll have to read
 past the typos.
 
 
-* [The Little Go Book](http://openmymind.net/The-Little-Go-Book/)I
+* [The Little Go Book](http://openmymind.net/The-Little-Go-Book/) I
 Highly recommend this book if you are at all interested in go. The
 author is super awesome and open to feedback.
 
