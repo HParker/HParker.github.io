@@ -10,6 +10,8 @@ Hey, This is Adam. I am a software developer. I work mostly in Ruby
 and Javascript, but I have a latent interest in LISP. I drink far too
 much coffee and enjoy Pho.
 
+<a href="https://keybase.io/hparker"><img src="https://keybase.onlineth.com/hparker.png?theme=clean" width="210" height="58" alt="keybase.io profile for hparker"></a>
+
 ## Reading:
 
 * [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
