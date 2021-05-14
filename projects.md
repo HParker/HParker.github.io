@@ -4,9 +4,7 @@ title: Projects
 permalink: /projects/
 ---
 
-## Recent Contributions
-
-> A rising tide lifts all boats
+## Contributions
 
 - [Hamster](https://github.com/hamstergem/hamster) Efficient, Immutable, Thread-Safe Collection classes for Ruby
 

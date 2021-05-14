@@ -7,26 +7,30 @@ permalink: /about/
 ![Me](/assets/me.png)
 
 Hey, This is Adam. I am a software developer. I work mostly in Ruby
-and Javascript, but I have a latent interest in LISP. I drink far too
-much coffee and enjoy Pho.
-
-<a href="https://keybase.io/hparker"><img src="https://keybase.onlineth.com/hparker.png?theme=clean" width="210" height="58" alt="keybase.io profile for hparker"></a>
+and Javascript, but I have a latent interest in compiler design and implementation. I also drink far
+much coffee.
 
 ## Reading:
 
-* [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
-* [Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer)
+* [Ruby Under a Microscope](http://patshaughnessy.net/ruby-under-a-microscope)
+* [The Ray Tracer Challenge](http://raytracerchallenge.com/)
+* [The Art of Doing Science and Engineering: Learning to Learn](https://www.amazon.com/Art-Doing-Science-Engineering-Learning/dp/1732265178)
 
 ## Next to read:
 
+* [Working in Public: The Making and Maintenance of Open Source Software](https://www.amazon.com/dp/0578675862/)
 
-* [Learn you a haskell](http://learnyouahaskell.com/)
-* [Zen and the Art of Motorcycle Maintenance](https://en.wikipedia.org/wiki/Zen_and_the_Art_of_Motorcycle_Maintenance)
-* [Ruby Under a Microscope](http://patshaughnessy.net/ruby-under-a-microscope)
-* [The Fountainhead](https://en.wikipedia.org/wiki/The_Fountainhead)
-* [The little Schemer](https://mitpress.mit.edu/books/little-schemer)
+* [The little Prover](https://mitpress.mit.edu/books/little-prover)
 
 ## Recently Read:
+
+* [Mazes for Programmers](http://www.mazesforprogrammers.com/)
+
+* [The little Schemer](https://mitpress.mit.edu/books/little-schemer)
+
+* [Zen and the Art of Motorcycle Maintenance](https://en.wikipedia.org/wiki/Zen_and_the_Art_of_Motorcycle_Maintenance)
+
+* [Writing a Compiler in Go](https://compilerbook.com/)
 
 * [Exceptional Ruby](http://exceptionalruby.com/) Short and had a
 couple nuggets of knowledge. The points of reflection where a bit
@@ -35,6 +39,7 @@ read them.  FYI: if you use iBooks, the epub will not render
 correctly, so I wasn't able to make notes. Also, you'll have to read
 past the typos.
 
+* [the structure and interpretation of computer programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
 
 * [The Little Go Book](http://openmymind.net/The-Little-Go-Book/) I
 Highly recommend this book if you are at all interested in go. The
