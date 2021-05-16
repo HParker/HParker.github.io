@@ -1,0 +1,4 @@
+baseURL = "https://hparker.xyz/"
+languageCode = "en-us"
+title = "HParker"
+theme = "paperesque"
