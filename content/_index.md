@@ -1,16 +1,21 @@
+[]()
+
+<img class="profile-picture" src="me.png" height="100px">
+
+
 # About Me
 
 A Software Developer focused on Ruby and Ruby on Rails. I work at
 GitHub focusing on Improving Ruby infrastructure.
 
-Previously: Procore, Invoca, Lesson Planet
+Previously: [Procore](https://www.procore.com/), [Invoca](https://www.invoca.com/), [Lesson Planet](https://www.lessonplanet.com/)
 
 # Projects
 
-- Ruby Explorer
-- Puzzle Engine
-- Feedjira
-- ColorFuck
+- [Ruby Explorer](ruby-explorer)
+- [Puzzle Engine](puzzle-engine)
+- [ColorFuck](color-fuck)
+- [Emulators](emulators)
 
 # Contributions
 

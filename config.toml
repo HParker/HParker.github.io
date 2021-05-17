@@ -9,7 +9,7 @@ math = false # enable KaTeX (https://katex.org/) globally
   author = "Adam Hess"
   description = "A Website about software by Adam Hess"
   favicon = "favicon.ico"  # path to a .ico to use as favicon
-  logo = "me.png"  # url or path to a logo to put in the header
+  # logo = "me.png"  # url or path to a logo to put in the header
   [params.footer]
     text = "By Adam Hess"
     url = "https://hparker.xyz"
