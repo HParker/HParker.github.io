@@ -1,7 +1,5 @@
-[]()
-
-<img class="profile-picture" src="me.png" height="100px">
-
+[comment]: <> (comment required to allow image tag)
+<img class="profile-picture" src="/me.png" height="100px">
 
 # About Me
 
