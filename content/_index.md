@@ -4,7 +4,7 @@
 # About Me
 
 A Software Developer focused on Ruby and Ruby on Rails. I work at
-GitHub focusing on Improving Ruby infrastructure.
+[GitHub](github.com) focusing on Improving Ruby infrastructure.
 
 Previously: [Procore](https://www.procore.com/), [Invoca](https://www.invoca.com/), [Lesson Planet](https://www.lessonplanet.com/)
 
@@ -12,8 +12,7 @@ Previously: [Procore](https://www.procore.com/), [Invoca](https://www.invoca.com
 
 - [Ruby Explorer](ruby-explorer)
 - [Puzzle Engine](puzzle-engine)
-- [ColorFuck](color-fuck)
-- [Emulators](emulators)
+- [BF3D](bf3d)
 
 # Contributions
 
