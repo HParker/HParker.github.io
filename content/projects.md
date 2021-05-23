@@ -12,6 +12,6 @@ write and run games in the declarative scripting language PuzzleScript
 
 My Novel Esoteric programming language based on BrainFuck, but with more beautiful 8-bit colors
 
-### Turnakit
+### [Turnakit](https://www.hackster.io/teamturing/turnakit-706245).
 
 Checkout the [hackster page](https://www.hackster.io/teamturing/turnakit-706245).

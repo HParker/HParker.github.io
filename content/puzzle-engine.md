@@ -1,6 +1,6 @@
 # puzzle engine
 
-[Demo Video](https://www.youtube.com/watch?v=-mBRJC_mFdI) | [Code](https://github.com/hparker/puzzleengine)
+[Demo Video](https://www.youtube.com/watch?v=-mBRJC_mFdI) | [Code](https://github.com/hparker/puzzleengine) | [Inspiration](htpps://www.puzzlescript.net)
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-mBRJC_mFdI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

@@ -2,7 +2,7 @@
 
 ![colorful filled cube showing bf3d code in front of it](/filled-cube-code.png)
 
-[Demo Video]() | [Code Pending..]()
+[Demo Video](https://www.youtube.com/watch?v=bzHA7UIkmOs) | [Code Pending..]()
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bzHA7UIkmOs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 _Video depicting a Bf3d program running as it fills in a diamond shaped 3d shape on the screen_

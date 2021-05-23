@@ -6,7 +6,7 @@
 A Software Developer focused on Ruby and Ruby on Rails. I work at
 [GitHub](github.com) focusing on Improving Ruby infrastructure.
 
-Previously: [Procore](https://www.procore.com/), [Invoca](https://www.invoca.com/), [Lesson Planet](https://www.lessonplanet.com/)
+Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.invoca.com/), 🧑‍🏫 [Lesson Planet](https://www.lessonplanet.com/)
 
 # Projects
 
