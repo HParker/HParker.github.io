@@ -12,7 +12,7 @@ math = false # enable KaTeX (https://katex.org/) globally
   # logo = "me.png"  # url or path to a logo to put in the header
   [params.footer]
     text = "By Adam Hess"
-    url = "https://hparker.xyz"
+    url = "https://www.hparker.xyz"
   [params.style]  # appearance options (can be omitted)
     fontFamily = "Inconsolata"
     pageWidth = "750px"

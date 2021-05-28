@@ -15,7 +15,7 @@ RRRGGGBB
 00000000
 ```
 
-[source](https://en.wikipedia.org/wiki/8-bit_color)
+[8-bit color format](https://en.wikipedia.org/wiki/8-bit_color)
 
 ## Technical details
 
