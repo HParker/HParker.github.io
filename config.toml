@@ -22,7 +22,7 @@ math = false # enable KaTeX (https://katex.org/) globally
   [[params.socialIcons]]
     icon = "fab fa-twitter"
     title = "Twitter"
-    url = "https://twitter.com/hparker"
+    url = "https://twitter.com/thehessparker"
   [[params.socialIcons]]
     icon = "fab fa-github"
     title = "Twitter"
