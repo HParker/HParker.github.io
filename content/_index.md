@@ -14,6 +14,10 @@ Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.
 - [Puzzle Engine](puzzle-engine)
 - [BF3D](bf3d)
 
+# Games
+
+- [Totally Fine Library](Totally-Fine-Library.html)
+
 # Contributions
 
 You can find a list of my open source contributions on Github here,
