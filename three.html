@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="visualizer"></div>
+    <textarea type="text" id="code"></textarea>
+
+    <script src="three.js"></script>
+    <script>
+      const visualizer = document.getElementById("visualizer");
+      const codeBox = document.getElementById("code");
+
+
+      var ySpeed = 0;
+      var xSpeed = 0;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera( 75, 300 / 300, 0.1, 1000 );
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize( 300, 300 );
+
+      visualizer.appendChild( renderer.domElement );
+
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      const cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+
+      camera.position.z = 5;
+
+      const animate = function () {
+	  requestAnimationFrame( animate );
+
+	  cube.rotation.x += xSpeed;
+	  cube.rotation.y += ySpeed;
+
+	  renderer.render( scene, camera );
+      };
+
+      animate();
+
+      const compile = function() {
+          const code = codeBox.value;
+
+          console.log(code);
+      }
+
+      document.addEventListener("keydown", onDocumentKeyDown, false);
+      function onDocumentKeyDown(event) {
+
+          var keyCode = event.which;
+          console.log(keyCode);
+          if (keyCode == 87) {
+              xSpeed = 0.01;
+              cube.position.y += ySpeed;
+          } else if (keyCode == 83) {
+              xSpeed = -0.01;
+              cube.position.y -= ySpeed;
+          } else if (keyCode == 65) {
+              ySpeed = -0.01;
+              cube.position.x -= xSpeed;
+          } else if (keyCode == 68) {
+              ySpeed = 0.01;
+          } else if (keyCode == 32) {
+              // cube.position.set(0, 0, 0);
+          } else if (keyCode == 13) { // ENTER
+              compile()
+          }
+      };
+
+      document.addEventListener("keyup", onDocumentKeyup, false);
+      function onDocumentKeyup(event) {
+          xSpeed = 0;
+          ySpeed = 0;
+      };
+    </script>
+  </body>
+</html>

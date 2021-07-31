@@ -9,4 +9,8 @@ Technical Details The parser uses flex and bison to lex and parse the program.</
 Ruby Explorer makes it easy to explore and share Ruby VM internals. Typing Ruby code into Ruby Explorer generates a list of VM instructions created by ruby with links to their implementation in Ruby&amp;rsquo;s source code. In addition you can see what tokens the lexer returned and the S-Expression that ruby generated from those tokens.
 I became interested in making this tool while reading Ruby Under A Microscope by AUTHOR.</description></item><item><title/><link>https://www.hparker.xyz/todo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.hparker.xyz/todo/</guid><description>This is my public TODO list. There really isn&amp;rsquo;t a reason for it to be public, but here it is.
 TODO:
-Write documentation on Ruby compiler instructions Write documentation on Ruby compiler instruction optimization flags Try static-rails emulators page finally get back to a gb/a emulator art page</description></item></channel></rss>
+Write documentation on Ruby compiler instructions Write documentation on Ruby compiler instruction optimization flags Try static-rails emulators page finally get back to a gb/a emulator piece tables:
+&amp;ldquo;Hi there&amp;rdquo;
+Original =&amp;gt; &amp;ldquo;Hi there&amp;rdquo; Add =&amp;gt; &amp;quot;&amp;quot; Pieces =&amp;gt; [{ original 0-8 }]
+&amp;ldquo;H there&amp;rdquo;
+Original =&amp;gt; &amp;ldquo;Hi there&amp;rdquo; Add =&amp;gt; &amp;quot;&amp;quot; Pieces =&amp;gt; [{ original 0-1, original 2-6 }]</description></item></channel></rss>
