@@ -38,7 +38,7 @@ math = false # enable KaTeX (https://katex.org/) globally
 [menu]
   [[menu.main]]
     name = "Blog"
-    url = "http://words.hparker.io/"
+    url = "https://hparker.svbtle.com"
     weight = 1
   [[menu.main]]
     name = "Projects"
