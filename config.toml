@@ -19,18 +19,6 @@ math = false # enable KaTeX (https://katex.org/) globally
     avatarSize = "90px"
     colorBlack = "#222222"
     colorRed = "#172ac4"
-  [[params.socialIcons]]
-    icon = "fab fa-twitter"
-    title = "Twitter"
-    url = "https://twitter.com/thehessparker"
-  [[params.socialIcons]]
-    icon = "fab fa-github"
-    title = "Twitter"
-    url = "https://github.com/hparker"
-  [[params.socialIcons]]
-    icon = "fas fa-envelope"
-    title = "E-mail"
-    url = "mailto:hparker[at]hey.com"
 
 [permalinks]
   "/" = "/:filename"
@@ -41,7 +29,7 @@ math = false # enable KaTeX (https://katex.org/) globally
     url = "https://hparker.svbtle.com"
     weight = 1
   [[menu.main]]
-    name = "Projects"
+    name = "Projects & Games"
     url = "/projects"
     weight = 2
   [[menu.main]]

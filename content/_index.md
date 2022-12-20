@@ -10,17 +10,25 @@ Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.
 
 # Projects
 
-- [Ruby Explorer](ruby_explorer)
+- [Ruby Explorer](ruby_explorer.html)
+- [Ruby.wasm Todo](ruby_todo.html)
 - [Puzzle Engine](puzzle-engine)
 - [BF3D](bf3d)
+
 
 # Games
 
 - [Totally Fine Library](Totally-Fine-Library.html)
-- [Signal State Run Identifier](https://steamcommunity.com/sharedfiles/filedetails/?id=2866953078)
+- [Signal State Run Identifier](signal-state-run-identifier)
 
 # Contributions
 
 You can find a list of my open source contributions on Github here,
 
 https://github.com/pulls?utf8=%E2%9C%93&q=is%3Apr+author%3AHParker+is%3Apublic
+
+
+# Socials
+
+- [ruby.social/@HParker](https://ruby.social/@HParker)
+- [github.com/hparker](https://github.com/hparker)
