@@ -41,6 +41,8 @@ Shoutout from maximecb's 2023 Ruby Kaigi talk
 
 [Optimizing YJIT’s Performance, from Inception to Production](https://youtu.be/X0JRhh8w_4I?si=Q1LHbirjG6mYU6mU)
 
+YARP/PRISM mirroring: https://bugs.ruby-lang.org/issues/19741
+
 
 # Socials
 
