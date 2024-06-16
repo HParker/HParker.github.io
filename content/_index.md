@@ -20,7 +20,8 @@ Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.
 
 - [Totally Fine Library](Totally-Fine-Library.html)
 - [Signal State Run Identifier](signal-state-run-identifier)
-- [minesweeper](Minesweeper)
+- [minesweeper](Minesweeper) [[source](https://github.com/HParker/minesweeper-defold)]
+- [Solitaire](solitaire) [[source](https://github.com/HParker/solitaire-defold)]
 
 # Contributions
 
