@@ -1,0 +1,53 @@
+<!doctype html><html lang><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title></title>
+<meta name=description content="A Website about software by Adam Hess"><meta name=author content='Adam Hess'><link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.3/css/academicons.min.css integrity="sha512-vaoopdl+FJahyY2ddhsbDj8yDiRuyUYH/vIjF3z+cBg0sKc07NAQmUYli8volCGlW9OwlQyjVsr7Lh6qAManlw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=/sass/researcher.min.css><link rel=icon type=image/ico href=https://www.hparker.xyz/favicon.ico></head><body><div class="container mt-5"><nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0"><a class="navbar-brand mx-0 mr-sm-auto" href=https://www.hparker.xyz/ title=HParker>HParker</a><div class="navbar-nav flex-row flex-wrap justify-content-center"><a class="nav-item nav-link" href=/projects title="Projects & Games">Projects & Games
+</a><span class="nav-item navbar-text mx-1">/</span>
+<a class="nav-item nav-link" href=/resume.pdf title=Resume><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-person-fill" fill="currentcolor"><path fill-rule="evenodd" d="M2 2a2 2 0 012-2h5.293A1 1 0 0110 .293L13.707 4a1 1 0 01.293.707V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm7.5 1.5v-2l3 3h-2a1 1 0 01-1-1zM11 8A3 3 0 115 8a3 3 0 016 0zm2 5.755S12 12 8 12s-5 1.755-5 1.755V14a1 1 0 001 1h8a1 1 0 001-1v-.245z"/></svg> Resume
+</a><span class="nav-item navbar-text mx-1">/</span>
+<a class="nav-item nav-link" href=/art title=Art>Art</a></div></nav></div><hr><div id=content><div class=container><h1 id=your-web-server-filesystem-is-a-liability>Your web server filesystem is a liability</h1><p>There seems to be a disconnect about how we should manage our
+infrastructure. &ldquo;Infrastructure as code&rdquo; and &ldquo;immutable
+infrastructure&rdquo; are common approaches now. The &ldquo;pet servers&rdquo;
+anti-pattern seems well explained, but no critique of file system use
+on a web server.</p><p>The filesystem on your web servers is a liability and you should avoid
+touching it at run time if at all possible. There are a number of ways
+that it can go wrong. Maybe you deploy to hosts with hard disks or you
+are referencing your Kubernetes cluster&rsquo;s persistent volume, either
+way persistent storage access should be treated with respect.</p><h2 id=local-static-assets>Local static assets</h2><p>Let&rsquo;s assume that your infrastructure is a typical web stack, <code>n</code> web
+servers talking to primary db with replica. A common approach I see to
+managing assets such as images, css and javascript is to server them
+from the web server filesystem. Write some nginx or haproxy config
+that tells the web server to serve your static assets from some
+directory on the file system; Probably <code>/var/www/html/&lt;asset type></code> or
+similar. All set. works great. The downside of this approach is that
+you have to build the assets on every web server or rsync the assets
+from the deploy server to each of the web servers. Either way, you now
+have a lot of duplicate files on each web server, but this alone isn&rsquo;t
+a big deal. Now that you have assets on each web server, there are
+some weird traps that you can fall in.</p><h3 id=requests-crossing-web-servers>Requests crossing web servers</h3><p>You are in the middle of a deploy, some percentage of your web servers
+are booting the new version of the app as existing web servers finish
+fielding their current requests. Given enough traffic, it becomes
+likely that you could request an asset from a newer version of the app
+that does not exist in the new version of the code. This will cause
+the asset to be missing for the client. This will result an error that
+is very unlikely to result in a bug report, but will still annoy
+users. I have never seen the, &ldquo;I refreshed the page once and the CSS
+was missing, but it was fine the second time&rdquo; bug report. Regardless,
+it will erode customer confidence since the website&rsquo;s behavior will be
+inconsistent.</p><h2 id=file-uploads>File uploads</h2><p>One common way to handle file uploads is to have the user attach the
+file in their browser. When the user submits the page the file is sent
+up to the server. The file is then received and saved to the web
+server&rsquo;s local filesystem.</p><h2 id=alternative-solution-using-the-file-system>Alternative solution using the file system</h2><p>One technique for avoiding file upload issues is sticky sessions. Make
+sure that requests for assets, uploaded files, etc. all go to the same
+web server that the request was made from. That way the asset is
+always available on the web server that it was uploaded to. The
+downside is that this can cause uneven traffic patterns and has some
+easy to overlook consequences that I won&rsquo;t go over here. That being
+said, it is a real option that would make filesystem use less likely
+to cause transient issues.</p><p>Another option is use a shared disk via NFS or similar software. this
+also works, but means that a potentially critical part of your system
+is reliant on that NFS as a single point of failure.</p><h2 id=alternative-approach-avoiding-the-file-system>Alternative approach avoiding the file system</h2><p>Regardless of your feelings about services, operations that access the
+file system should be limited to a set of hosts whose primary job is
+not serving web requests. They can server <strong>specific</strong> web requests
+for files or other operations that require interacting with the
+filesystem, but not something that the web server itself should ever
+interact with. Even better if you can pay someone else to manage these
+servers for you.</p></div></div><div id=footer class=mb-5><hr><div class="container text-center"><a href=https://www.hparker.xyz title="By Adam Hess"><small>By Adam Hess</small></a></div></div></body></html>

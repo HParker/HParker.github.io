@@ -1,0 +1,188 @@
+<!doctype html><html lang><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title></title>
+<meta name=description content="A Website about software by Adam Hess"><meta name=author content='Adam Hess'><link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.3/css/academicons.min.css integrity="sha512-vaoopdl+FJahyY2ddhsbDj8yDiRuyUYH/vIjF3z+cBg0sKc07NAQmUYli8volCGlW9OwlQyjVsr7Lh6qAManlw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=/sass/researcher.min.css><link rel=icon type=image/ico href=https://www.hparker.xyz/favicon.ico></head><body><div class="container mt-5"><nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0"><a class="navbar-brand mx-0 mr-sm-auto" href=https://www.hparker.xyz/ title=HParker>HParker</a><div class="navbar-nav flex-row flex-wrap justify-content-center"><a class="nav-item nav-link" href=/projects title="Projects & Games">Projects & Games
+</a><span class="nav-item navbar-text mx-1">/</span>
+<a class="nav-item nav-link" href=/resume.pdf title=Resume><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-person-fill" fill="currentcolor"><path fill-rule="evenodd" d="M2 2a2 2 0 012-2h5.293A1 1 0 0110 .293L13.707 4a1 1 0 01.293.707V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm7.5 1.5v-2l3 3h-2a1 1 0 01-1-1zM11 8A3 3 0 115 8a3 3 0 016 0zm2 5.755S12 12 8 12s-5 1.755-5 1.755V14a1 1 0 001 1h8a1 1 0 001-1v-.245z"/></svg> Resume
+</a><span class="nav-item navbar-text mx-1">/</span>
+<a class="nav-item nav-link" href=/art title=Art>Art</a></div></nav></div><hr><div id=content><div class=container><h1 id=embedding-lua-in-c-by-example>Embedding Lua in C by Example</h1><p>Here is a series of short C snippets to learn how to embed Lua in your C program. The complete source for these examples can be found at: <a href=https://github.com/HParker/embedding-lua-in-c-by-example>https://github.com/HParker/embedding-lua-in-c-by-example</a></p><h1 id=run-a-string-of-lua-code>Run a string of Lua code</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// Run a lua string
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;print(</span><span style=color:#b62;font-weight:700>\&#34;</span><span style=color:#b44>hello from lua</span><span style=color:#b62;font-weight:700>\&#34;</span><span style=color:#b44>)&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=run-a-file-of-lua-code>Run a file of Lua code</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// run a lua file
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#00a000>luaL_dofile</span>(L, <span style=color:#b44>&#34;hello.lua&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=get-a-number-from-lua>Get a number from Lua</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;x = 10&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;x&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#0b0;font-weight:700>int</span> x <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;x = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, x);
+</span></span></code></pre></div><h1 id=get-a-string-from-lua>Get a string from Lua</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;string = &#39;hi there&#39;&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;string&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>const</span> <span style=color:#0b0;font-weight:700>char</span> <span style=color:#666>*</span> string <span style=color:#666>=</span> <span style=color:#00a000>lua_tolstring</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>, <span style=color:#a2f>NULL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;string = &#39;%s&#39;</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, string);
+</span></span></code></pre></div><h1 id=get-a-table-field-from-lua>Get a table field from Lua</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;table = { key = 123 }&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;table&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getfield</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>, <span style=color:#b44>&#34;key&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#0b0;font-weight:700>int</span> key <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;key = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, key);
+</span></span></code></pre></div><h1 id=call-lua-function-from-c>Call Lua function from C</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;function foo() print(</span><span style=color:#b62;font-weight:700>\&#34;</span><span style=color:#b44>Hello from foo method</span><span style=color:#b62;font-weight:700>\&#34;</span><span style=color:#b44>) end&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;foo&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>if</span> (<span style=color:#00a000>lua_isfunction</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>)) {
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>//                        V number of arguments
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>//                        |  V number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#0b0;font-weight:700>int</span> status <span style=color:#666>=</span> <span style=color:#00a000>lua_pcall</span>(L, <span style=color:#666>0</span>, <span style=color:#666>0</span>, <span style=color:#666>0</span>);
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>// status can be LUA_OK, LUA_ERRRUN, LUA_ERRMEM, or LUA_ERRERR
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>if</span> (status <span style=color:#666>!=</span> LUA_OK) {
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;Something went wrong when calling the lua function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>      <span style=color:#0b0;font-weight:700>int</span> result <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;result = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, result);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;function `foo` was not found or was not a function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span></code></pre></div><h1 id=call-lua-function-with-a-return-value-from-c>Call lua function with a return value from C</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;function foo() return 456 end&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;foo&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>if</span> (<span style=color:#00a000>lua_isfunction</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>)) {
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>//                        V number of arguments
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>//                        |  V number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#0b0;font-weight:700>int</span> status <span style=color:#666>=</span> <span style=color:#00a000>lua_pcall</span>(L, <span style=color:#666>0</span>, <span style=color:#666>1</span>, <span style=color:#666>0</span>);
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>// status can be LUA_OK, LUA_ERRRUN, LUA_ERRMEM, or LUA_ERRERR
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>if</span> (status <span style=color:#666>!=</span> LUA_OK) {
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;Something went wrong when calling the lua function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>      <span style=color:#0b0;font-weight:700>int</span> result <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;result = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, result);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;function `foo` was not found or was not a function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span></code></pre></div><h1 id=call-a-lua-function-with-arguements-from-c>Call a lua function with arguements from C</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;function square(x) return x * x end&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;square&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>if</span> (<span style=color:#00a000>lua_isfunction</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>)) {
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>//                        V number of arguments
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>//                        |  V number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#00a000>lua_pushnumber</span>(L, (lua_Number)<span style=color:#666>5</span>);
+</span></span><span style=display:flex><span>    <span style=color:#0b0;font-weight:700>int</span> status <span style=color:#666>=</span> <span style=color:#00a000>lua_pcall</span>(L, <span style=color:#666>1</span>, <span style=color:#666>1</span>, <span style=color:#666>0</span>);
+</span></span><span style=display:flex><span>    <span style=color:#080;font-style:italic>// status can be LUA_OK, LUA_ERRRUN, LUA_ERRMEM, or LUA_ERRERR
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>if</span> (status <span style=color:#666>!=</span> LUA_OK) {
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;Something went wrong when calling the lua function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;Error: %s </span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, <span style=color:#00a000>lua_tostring</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>));
+</span></span><span style=display:flex><span>      <span style=color:#00a000>lua_pop</span>(L, <span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>      <span style=color:#0b0;font-weight:700>int</span> doubled <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>      <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;doubled = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, doubled);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  } <span style=color:#a2f;font-weight:700>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;function `square` was not found or was not a function</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span></code></pre></div><h1 id=expose-a-c-function-to-lua>Expose a C function to Lua</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>basicCFunc</span>(lua_State <span style=color:#666>*</span> L) {
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;This is my c function called from lua</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>; <span style=color:#080;font-style:italic>// number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_register</span>(L, <span style=color:#b44>&#34;basicCFunc&#34;</span>, basicCFunc);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;basicCFunc()&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=expose-a-c-function-to-lua-that-returns-a-value>Expose a C function to Lua that returns a value</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>returningCFunc</span>(lua_State <span style=color:#666>*</span> L) {
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_pushnumber</span>(L, <span style=color:#666>678</span>); <span style=color:#080;font-style:italic>// result
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>1</span>; <span style=color:#080;font-style:italic>// number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// expose a function to lua that returns a value
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#00a000>lua_register</span>(L, <span style=color:#b44>&#34;returningCFunc&#34;</span>, returningCFunc);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;returnedFromC = returningCFunc()&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;returnedFromC&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#0b0;font-weight:700>int</span> returnedFromC <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;returned from c = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, returnedFromC);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=expose-a-c-function-to-lua-that-takes-one-arguments>Expose a C function to Lua that takes one arguments</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>argumentCFunc</span>(lua_State <span style=color:#666>*</span> L) {
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_pushnumber</span>(L, <span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>1</span>) <span style=color:#666>+</span> <span style=color:#666>1</span>); <span style=color:#080;font-style:italic>// result
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>1</span>; <span style=color:#080;font-style:italic>// number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_register</span>(L, <span style=color:#b44>&#34;argumentCFunc&#34;</span>, argumentCFunc);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;returnedFromC = argumentCFunc(1)&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;returnedFromC&#34;</span>);
+</span></span><span style=display:flex><span>  returnedFromC <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;returned from c = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, returnedFromC);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=expose-a-c-function-to-lua-that-takes-any-number-of-arguments>Expose a C function to Lua that takes any number of arguments</h1><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;stdio.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lauxlib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lua.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080>#include</span> <span style=color:#080>&lt;lualib.h&gt;</span><span style=color:#080>
+</span></span></span><span style=display:flex><span><span style=color:#080></span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>variableArgumentCFunc</span>(lua_State <span style=color:#666>*</span> L) {
+</span></span><span style=display:flex><span>  <span style=color:#0b0;font-weight:700>int</span> n <span style=color:#666>=</span> <span style=color:#00a000>lua_gettop</span>(L); <span style=color:#080;font-style:italic>// number of arguments
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#0b0;font-weight:700>float</span> sum <span style=color:#666>=</span> <span style=color:#666>0.0</span>;
+</span></span><span style=display:flex><span>  <span style=color:#0b0;font-weight:700>int</span> i;
+</span></span><span style=display:flex><span>  <span style=color:#a2f;font-weight:700>for</span> (i <span style=color:#666>=</span> <span style=color:#666>1</span>; i <span style=color:#666>&lt;=</span> n; i<span style=color:#666>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a2f;font-weight:700>if</span> (<span style=color:#666>!</span><span style=color:#00a000>lua_isnumber</span>(L, i)) {
+</span></span><span style=display:flex><span>      <span style=color:#00a000>lua_pushliteral</span>(L, <span style=color:#b44>&#34;incorrect argument&#34;</span>);
+</span></span><span style=display:flex><span>      <span style=color:#00a000>lua_error</span>(L);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    sum <span style=color:#666>+=</span> <span style=color:#00a000>lua_tonumber</span>(L, i);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_pushnumber</span>(L, sum); <span style=color:#080;font-style:italic>// result
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>1</span>; <span style=color:#080;font-style:italic>// number of results
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>// setup lua
+</span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span>  lua_State <span style=color:#666>*</span>L <span style=color:#666>=</span> <span style=color:#00a000>luaL_newstate</span>();
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_openlibs</span>(L);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_register</span>(L, <span style=color:#b44>&#34;variableArgumentCFunc&#34;</span>, variableArgumentCFunc);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>luaL_dostring</span>(L, <span style=color:#b44>&#34;returnedFromC = variableArgumentCFunc(1, 2, 3)&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>lua_getglobal</span>(L, <span style=color:#b44>&#34;returnedFromC&#34;</span>);
+</span></span><span style=display:flex><span>  returnedFromC <span style=color:#666>=</span> (<span style=color:#0b0;font-weight:700>int</span>)<span style=color:#00a000>lua_tonumber</span>(L, <span style=color:#666>-</span><span style=color:#666>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#00a000>printf</span>(<span style=color:#b44>&#34;returned from c = %i</span><span style=color:#b62;font-weight:700>\n</span><span style=color:#b44>&#34;</span>, returnedFromC);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></div><div id=footer class=mb-5><hr><div class="container text-center"><a href=https://www.hparker.xyz title="By Adam Hess"><small>By Adam Hess</small></a></div></div></body></html>
