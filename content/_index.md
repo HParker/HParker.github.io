@@ -3,8 +3,8 @@
 
 # About Me
 
-A Software Developer focused on Ruby and Ruby on Rails. I work at
-[GitHub](github.com) working on Improving Ruby infrastructure.
+A Staff Software Engineer focused on Ruby, Compilers and performance. I work at
+[GitHub](github.com) on the Ruby Architecture team improving Ruby upstream for everyone.
 
 Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.invoca.com/), 🧑‍🏫 [Lesson Planet](https://www.lessonplanet.com/)
 
@@ -14,7 +14,7 @@ Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.
 - [Ruby.wasm Todo](ruby_todo.html)
 - [Puzzle Engine](puzzle-engine)
 - [BF3D](bf3d)
-
+- [Dotal](https://github.com/HParker/dotal)
 
 # Games
 
@@ -22,6 +22,22 @@ Previously: 🔧 [Procore](https://www.procore.com/), 📞 [Invoca](https://www.
 - [Signal State Run Identifier](signal-state-run-identifier)
 - [minesweeper](Minesweeper) [[source](https://github.com/HParker/minesweeper-defold)]
 - [Solitaire](solitaire) [[source](https://github.com/HParker/solitaire-defold)]
+
+# Talks
+
+[Finding Memory Leaks in the Ruby Ecosystem](https://youtu.be/pQ1XCrwq1qc?si=p1CDAqJ2FbVU4jiR)
+
+# Words
+
+- [ruby bytecode patterns](ruby-bytecode-patterns)
+- [ruby regex engine](ruby-regex-engine)
+- [embedding lua by example](embedding-lua-by-example)
+- [handmade seattle 2022 notes](handmade-seattle-2022-notes)
+- [invoca hackathon](invoca-hackathon)
+- [orbtoberfest 2019](orbtoberfest-2019)
+- [pebble rocks hackathon](pebble-rocks-hackathon)
+- [speaking about performance](speaking-about-performance)
+- [your disk is a liability](your-disk-is-a-liability)
 
 # Contributions
 
